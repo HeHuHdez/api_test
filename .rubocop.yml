@@ -1,0 +1,26 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+AllCops:
+  Exclude:
+    - config/**/*.rb
+    - db/**/*.rb
+    - bin/**/
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'Guardfile'
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'db/schema.rb'
