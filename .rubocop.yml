@@ -8,6 +8,8 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+RSpec/ImplicitExpect:
+  Enabled: false
 AllCops:
   Exclude:
     - config/**/*.rb

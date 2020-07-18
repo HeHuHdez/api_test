@@ -2,10 +2,11 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'MyString' }
-    email { 'MyString' }
-    password_digest { 'MyString' }
-    auth_token { 'MyString' }
-    expires_at { '2020-07-18 19:41:54' }
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
+    password { 'apitest123' }
+    password_confirmation { 'apitest123' }
+    auth_token { nil }
+    expires_at { Time.zone.now }
   end
 end

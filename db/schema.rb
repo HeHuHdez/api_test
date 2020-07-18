@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_07_18_194153) do
     t.time "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
