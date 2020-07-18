@@ -1,0 +1,53 @@
+---
+swagger: '2.0'
+info:
+  title: API V1. Documentation for Api Test
+  version: v1
+securitySchemes:
+  basic_auth:
+    type: http
+    scheme: basic
+paths:
+  "/api/sessions":
+    post:
+      summary: Login method
+      description: |-
+        The user should provide his/hers email and password.
+              The request will return the auth_token needed to authorize the other requests
+      tags:
+      - Sessions
+      consumes:
+      - application/json
+      parameters:
+      - name: params
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+            required:
+            - email
+            - password
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid user credentials
+          examples:
+            application/json:
+              auth_token: KXP761LhxoSRuR5fHUSWJXhv
+              expires_at: '2000-01-01T23:38:15.000Z'
+        '401':
+          description: with invalid user credentials
+          examples:
+            application/json:
+              status: 401
+              message: Bad credentials
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

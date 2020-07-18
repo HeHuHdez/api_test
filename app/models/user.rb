@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }
 
   validates :password, presence: true, length: { minimum: 8 }, format: { with: VALID_PASSWORD_REGEX },
-                       confirmation: true
+                       confirmation: true, if: :password_digest_changed?
 
   private
 

@@ -7,12 +7,12 @@ RSpec.configure do |config|
 
   config.swagger_docs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      swagger: '2.0',
       info: {
         title: 'API V1. Documentation for Api Test',
         version: 'v1'
       },
-      securityDefinitions: {
+      securitySchemes: {
         basic_auth: {
           type: :http,
           scheme: :basic
