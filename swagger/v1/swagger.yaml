@@ -8,6 +8,537 @@ securitySchemes:
     type: http
     scheme: basic
 paths:
+  "/api/orders":
+    get:
+      summary: Index
+      description: Returns all orders existing orders
+      tags:
+      - Orders
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: starts
+        in: query
+        required: false
+        type: string
+        default: 2020-07-19 22:25:11 UTC
+      - name: ends
+        in: query
+        required: false
+        type: string
+        default: 2020-07-19 22:25:11 UTC
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and both filters
+          examples:
+            application/json:
+            - id: 49
+              name: '5301871062'
+              description: Iusto ut deserunt. Dolorem quia accusamus. Repellendus
+                iste consequatur.
+              date: '2020-06-20T02:39:07.000Z'
+            - id: 51
+              name: '4254570449'
+              description: Rem amet est. Quia vero est. Velit eum voluptates.
+              date: '2020-06-23T07:36:40.000Z'
+            - id: 52
+              name: '8961105174'
+              description: Vitae asperiores enim. Voluptatibus et ad. Expedita aut
+                ut.
+              date: '2020-06-20T14:58:23.000Z'
+        '422':
+          description: with valid auth_token and invalid date format
+          examples:
+            application/json:
+              message: bad value for range
+        '401':
+          description: invalid token
+    post:
+      summary: Create
+      description: 'Creates a new order '
+      tags:
+      - Orders
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: params
+        in: body
+        schema:
+          type: object
+          properties:
+            order:
+              name:
+                type: string
+              description:
+                type: string
+              date:
+                type: string
+              products:
+                type: array
+                items:
+                  properties:
+                    product_id:
+                      type: integer
+                    quantity:
+                      type: integer
+              required:
+              - name
+              - description
+              - date
+              example:
+                name: My new product
+                description: some new description
+                date: 2020-07-19 22:25:11 UTC
+                products:
+                - product_id: 5
+                  quantity: 10
+            required:
+            - order
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: with valid auth_token and valid params
+          examples:
+            application/json:
+              id: 59
+              name: My new product
+              description: some new description
+              date: '2020-07-19T22:25:13.000Z'
+              products_with_quantity:
+              - product_id: 60
+                quantity: 5
+        '422':
+          description: with valid auth_token and invalid params
+          examples:
+            application/json:
+              order_products:
+              - is invalid
+              name:
+              - can't be blank
+        '401':
+          description: invalid token
+        '400':
+          description: missing params
+  "/api/orders/{id}":
+    get:
+      summary: Show
+      description: Returns an order detail
+      tags:
+      - Orders
+      parameters:
+      - name: id
+        in: path
+        default: 1
+        required: true
+      - name: Authorization
+        in: header
+        default: 'Token '
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and valid id
+          examples:
+            application/json:
+              id: 58
+              name: '1245487343'
+              description: Sit est aliquam. Ab explicabo dolor. Quae alias minus.
+              date: '2020-07-02T22:27:04.000Z'
+              products_with_quantity:
+              - product_id: 59
+                quantity: 8
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Order with 'id'=25515151
+        '401':
+          description: invalid token
+    put:
+      summary: Update
+      description: 'Updates an order '
+      tags:
+      - Orders
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: id
+        in: path
+        default: 1
+        required: true
+      - name: params
+        in: body
+        schema:
+          type: object
+          properties:
+            order:
+              name:
+                type: string
+              description:
+                type: string
+              date:
+                type: string
+              products:
+                type: array
+                items:
+                  properties:
+                    product_id:
+                      type: integer
+                    quantity:
+                      type: integer
+              required:
+              - name
+              - description
+              - date
+              example:
+                name: My new product
+                description: some new description
+                date: 2020-07-19 22:25:11 UTC
+                products:
+                - product_id: 5
+                  quantity: 10
+            required:
+            - order
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: with valid auth_token and valid params
+          examples:
+            application/json:
+              id: 60
+              name: My new product
+              description: some new description
+              date: '2020-07-19T22:25:13.000Z'
+              products_with_quantity:
+              - product_id: 61
+                quantity: 5
+        '422':
+          description: with valid auth_token and invalid params
+          examples:
+            application/json:
+              order_products:
+              - is invalid
+              name:
+              - can't be blank
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Order with 'id'=25525252
+        '401':
+          description: invalid token
+        '400':
+          description: missing params
+    delete:
+      summary: Destroy
+      description: Destroys an order and all records associated with it
+      tags:
+      - Orders
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: id
+        in: path
+        default: 1
+        required: true
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: with valid auth_token and valid id
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Order with 'id'=25525252
+        '401':
+          description: invalid token
+  "/api/orders/{id}/products":
+    get:
+      summary: Products from order
+      description: 'Get all the '
+      tags:
+      - Orders
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: id
+        in: path
+        default: 1
+        required: true
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and valid id
+          examples:
+            application/json:
+            - id: 62
+              name: Producto 66
+              description: Assumenda accusantium mollitia. Fuga repudiandae ipsam.
+                Earum velit qui.
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Order with 'id'=25525252
+        '401':
+          description: invalid token
+  "/api/products":
+    get:
+      summary: Index
+      description: Returns all existing products
+      tags:
+      - Products
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token
+          examples:
+            application/json:
+            - id: 63
+              name: Producto 67
+              description: Id eum dolorem. Omnis nihil esse. Tenetur et ut.
+            - id: 64
+              name: Producto 68
+              description: Nostrum expedita quibusdam. Minus aperiam alias. Rerum
+                maxime optio.
+            - id: 65
+              name: Producto 69
+              description: Velit quisquam exercitationem. Aut error iure. Libero voluptatem
+                eos.
+            - id: 66
+              name: Producto 70
+              description: Ut quod et. Magnam harum velit. Cumque est minus.
+            - id: 67
+              name: Producto 71
+              description: Consequuntur ratione eaque. Rerum hic sit. Quasi sint non.
+            - id: 68
+              name: Producto 72
+              description: A eveniet aut. Voluptas veniam aliquam. Omnis inventore
+                qui.
+            - id: 69
+              name: Producto 73
+              description: Perspiciatis eius est. Dolorem nihil vero. Minus provident
+                et.
+            - id: 70
+              name: Producto 74
+              description: Fugit aut dolor. Fugit mollitia qui. Aliquam possimus qui.
+            - id: 71
+              name: Producto 75
+              description: Dignissimos est sit. Esse iure quasi. Aut voluptates minima.
+            - id: 72
+              name: Producto 76
+              description: Qui commodi impedit. Dolores doloribus debitis. Aut quo
+                veritatis.
+        '401':
+          description: invalid token
+    post:
+      summary: Create
+      description: 'Creates a new product '
+      tags:
+      - Products
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: params
+        in: body
+        schema:
+          type: object
+          properties:
+            product:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+              - name
+              - description
+              example:
+                name: My new product
+                description: some new description
+            required:
+            - product
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: with valid auth_token and valid params
+          examples:
+            application/json:
+              id: 84
+              name: My new product
+              description: some new description
+        '422':
+          description: with valid auth_token and invalid params
+          examples:
+            application/json:
+              name:
+              - can't be blank
+        '401':
+          description: invalid token
+  "/api/products/{id}":
+    get:
+      summary: Show
+      description: Returns a product detail
+      tags:
+      - Products
+      parameters:
+      - name: id
+        in: path
+        default: 1
+        required: true
+      - name: Authorization
+        in: header
+        default: 'Token '
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and valid id
+          examples:
+            application/json:
+              id: 83
+              name: Producto 87
+              description: Consequuntur magni est. Cumque nisi molestias. Eligendi
+                vel reprehenderit.
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Product with 'id'=12
+        '401':
+          description: invalid token
+    put:
+      summary: Update
+      description: 'Updates a product '
+      tags:
+      - Products
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: id
+        in: path
+        default: 1
+        required: true
+      - name: params
+        in: body
+        schema:
+          type: object
+          properties:
+            product:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+              - name
+              - description
+              example:
+                name: My updated product
+                description: Updated description
+            required:
+            - product
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and valid params
+          examples:
+            application/json:
+              id: 85
+              name: My updated product
+              description: updated description
+        '422':
+          description: with valid auth_token and invalid params
+          examples:
+            application/json:
+              name:
+              - can't be blank
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Product with 'id'=25525252
+        '401':
+          description: invalid token
+    delete:
+      summary: Destroy
+      description: Destroys a product and all records associated with it
+      tags:
+      - Products
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: id
+        in: path
+        default: 1
+        required: true
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: with valid auth_token and valid id
+        '404':
+          description: with valid auth_token and invalid id
+          examples:
+            application/json:
+              message: Couldn't find Product with 'id'=25525252
+        '401':
+          description: invalid token
+  "/api/products/populars":
+    get:
+      summary: Populars
+      description: |-
+        Returns all products with an order sorted by the quantity they have.
+              It can be delimeted with the limit param
+      tags:
+      - Products
+      parameters:
+      - name: Authorization
+        in: header
+        default: 'Token '
+      - name: limit
+        in: query
+        type: string
+        required: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: with valid auth_token and limit
+          examples:
+            application/json:
+              Producto 91: 9
+              Producto 99: 9
+              Producto 92: 8
+        '401':
+          description: invalid token
   "/api/sessions":
     post:
       summary: Login method
@@ -38,8 +569,8 @@ paths:
           description: with valid user credentials
           examples:
             application/json:
-              auth_token: KXP761LhxoSRuR5fHUSWJXhv
-              expires_at: '2000-01-01T23:38:15.000Z'
+              auth_token: YZKssfCcJF51jx2WeyGQbXF9
+              expires_at: '2020-07-20T22:25:14.000Z'
         '401':
           description: with invalid user credentials
           examples:

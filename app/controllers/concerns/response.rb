@@ -2,7 +2,7 @@
 
 # Module to put all json builders
 module Response
-  def json_response(object, status = :ok)
-    render json: object, status: status
+  def json_response(object, status = :ok, location = nil, include = nil)
+    render json: object, status: status, location: location, include: include
   end
 end

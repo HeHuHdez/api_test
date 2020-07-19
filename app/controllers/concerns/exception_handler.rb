@@ -12,5 +12,13 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordInvalid do |e|
       json_response({ message: e.message }, :unprocessable_entity)
     end
+
+    rescue_from ArgumentError do |e|
+      json_response({ message: e.message }, :unprocessable_entity)
+    end
+
+    rescue_from ActionController::ParameterMissing do |e|
+      json_response({ message: e.message }, :bad_request)
+    end
   end
 end

@@ -10,6 +10,12 @@ Style/HashTransformValues:
   Enabled: true
 RSpec/ImplicitExpect:
   Enabled: false
+RSpec/VariableName:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+RSpec/ScatteredSetup:
+  Enabled: false
 AllCops:
   Exclude:
     - config/**/*.rb
@@ -19,7 +25,7 @@ Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
     - '**/*.rake'
-    - 'spec/**/*.rb'
+    - 'spec/**/*'
     - 'Guardfile'
 Layout/LineLength:
   Max: 120
