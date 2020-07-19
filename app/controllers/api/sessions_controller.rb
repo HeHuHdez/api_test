@@ -8,10 +8,10 @@ module Api
     def create
       user = User.find_by(email: params[:email].downcase)
       if user&.authenticate(params[:password])
-        user.regenerate_auth_token
+        user.regenerate_auth_token if user.token_expired?
         json_response({ auth_token: user.auth_token, expires_at: user.expires_at })
       else
-        json_response({ status: 401, message: 'Bad credentials' }, 401)
+        json_response({ status: 401, message: 'Bad credentials' }, :unauthorized)
       end
     end
   end

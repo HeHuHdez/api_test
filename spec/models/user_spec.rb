@@ -18,4 +18,20 @@ RSpec.describe User, type: :model do
       expect(user.expires_at).not_to be_nil
     end
   end
+
+  describe '.token_expired?' do
+    context 'with expired token' do
+      it '' do
+        user = create(:user)
+        allow(Time).to receive(:now).and_return(2.years.from_now)
+        expect(user.token_expired?).to be true
+      end
+    end
+
+    context 'with valid token' do
+      subject{ create(:user).token_expired? }
+
+      it { is_expected.to be false }
+    end
+  end
 end

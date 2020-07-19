@@ -7,6 +7,6 @@ FactoryBot.define do
     password { 'apitest123' }
     password_confirmation { 'apitest123' }
     auth_token { nil }
-    expires_at { Time.zone.now }
+    expires_at { nil }
   end
 end
