@@ -22,12 +22,12 @@ paths:
         in: query
         required: false
         type: string
-        default: 2020-07-19 22:25:11 UTC
+        default: 2020-07-20 15:10:12 UTC
       - name: ends
         in: query
         required: false
         type: string
-        default: 2020-07-19 22:25:11 UTC
+        default: 2020-07-20 15:10:12 UTC
       produces:
       - application/json
       responses:
@@ -35,20 +35,19 @@ paths:
           description: with valid auth_token and both filters
           examples:
             application/json:
+            - id: 48
+              name: '2770222156'
+              description: Quo totam quaerat. Vero nulla aliquid. Et dicta et.
+              date: '2020-06-27T05:22:53.000Z'
             - id: 49
-              name: '5301871062'
-              description: Iusto ut deserunt. Dolorem quia accusamus. Repellendus
-                iste consequatur.
-              date: '2020-06-20T02:39:07.000Z'
-            - id: 51
-              name: '4254570449'
-              description: Rem amet est. Quia vero est. Velit eum voluptates.
-              date: '2020-06-23T07:36:40.000Z'
+              name: '7357909402'
+              description: Facilis qui quo. Non voluptatum et. Sit laborum consectetur.
+              date: '2020-07-01T00:56:22.000Z'
             - id: 52
-              name: '8961105174'
-              description: Vitae asperiores enim. Voluptatibus et ad. Expedita aut
-                ut.
-              date: '2020-06-20T14:58:23.000Z'
+              name: '3370432031'
+              description: Laudantium sed quia. Illo consequuntur nostrum. Quasi corporis
+                commodi.
+              date: '2020-06-23T23:32:13.000Z'
         '422':
           description: with valid auth_token and invalid date format
           examples:
@@ -58,7 +57,10 @@ paths:
           description: invalid token
     post:
       summary: Create
-      description: 'Creates a new order '
+      description: |-
+        Creates a new order.
+              It receives all the products associated with it as an array with the keyword "products".
+              It needs a product_id and a quantity in order to create a new order
       tags:
       - Orders
       parameters:
@@ -92,7 +94,7 @@ paths:
               example:
                 name: My new product
                 description: some new description
-                date: 2020-07-19 22:25:11 UTC
+                date: 2020-07-20 15:10:12 UTC
                 products:
                 - product_id: 5
                   quantity: 10
@@ -110,7 +112,7 @@ paths:
               id: 59
               name: My new product
               description: some new description
-              date: '2020-07-19T22:25:13.000Z'
+              date: '2020-07-20T15:10:19.000Z'
               products_with_quantity:
               - product_id: 60
                 quantity: 5
@@ -148,12 +150,13 @@ paths:
           examples:
             application/json:
               id: 58
-              name: '1245487343'
-              description: Sit est aliquam. Ab explicabo dolor. Quae alias minus.
-              date: '2020-07-02T22:27:04.000Z'
+              name: '6657109181'
+              description: Aut quo illo. Ducimus sunt quibusdam. Facilis mollitia
+                id.
+              date: '2020-07-02T14:23:06.000Z'
               products_with_quantity:
               - product_id: 59
-                quantity: 8
+                quantity: 6
         '404':
           description: with valid auth_token and invalid id
           examples:
@@ -163,7 +166,9 @@ paths:
           description: invalid token
     put:
       summary: Update
-      description: 'Updates an order '
+      description: |-
+        Updates an order It receives all the products associated with it as an array with the keyword "products".
+              It needs a product_id and a quantity in order to update an order
       tags:
       - Orders
       parameters:
@@ -201,7 +206,7 @@ paths:
               example:
                 name: My new product
                 description: some new description
-                date: 2020-07-19 22:25:11 UTC
+                date: 2020-07-20 15:10:12 UTC
                 products:
                 - product_id: 5
                   quantity: 10
@@ -219,7 +224,7 @@ paths:
               id: 60
               name: My new product
               description: some new description
-              date: '2020-07-19T22:25:13.000Z'
+              date: '2020-07-20T15:10:19.000Z'
               products_with_quantity:
               - product_id: 61
                 quantity: 5
@@ -288,8 +293,7 @@ paths:
             application/json:
             - id: 62
               name: Producto 66
-              description: Assumenda accusantium mollitia. Fuga repudiandae ipsam.
-                Earum velit qui.
+              description: Corporis sit vero. Laudantium sed quaerat. Ad sequi impedit.
         '404':
           description: with valid auth_token and invalid id
           examples:
@@ -316,39 +320,37 @@ paths:
             application/json:
             - id: 63
               name: Producto 67
-              description: Id eum dolorem. Omnis nihil esse. Tenetur et ut.
+              description: Maxime molestiae aut. Quo consequatur ad. Autem et optio.
             - id: 64
               name: Producto 68
-              description: Nostrum expedita quibusdam. Minus aperiam alias. Rerum
-                maxime optio.
+              description: Praesentium quae ut. At et autem. Ab commodi veritatis.
             - id: 65
               name: Producto 69
-              description: Velit quisquam exercitationem. Aut error iure. Libero voluptatem
-                eos.
+              description: Adipisci nobis aut. Et minus est. Ipsam voluptas qui.
             - id: 66
               name: Producto 70
-              description: Ut quod et. Magnam harum velit. Cumque est minus.
+              description: Est dicta ducimus. Consectetur rem ipsa. Provident voluptatem
+                harum.
             - id: 67
               name: Producto 71
-              description: Consequuntur ratione eaque. Rerum hic sit. Quasi sint non.
+              description: Aperiam corporis et. Repudiandae facere dolorum. At magni
+                pariatur.
             - id: 68
               name: Producto 72
-              description: A eveniet aut. Voluptas veniam aliquam. Omnis inventore
-                qui.
+              description: Amet necessitatibus consequatur. Voluptas mollitia error.
+                Neque numquam eos.
             - id: 69
               name: Producto 73
-              description: Perspiciatis eius est. Dolorem nihil vero. Minus provident
-                et.
+              description: Fuga voluptatem saepe. At dolore ducimus. Enim rem velit.
             - id: 70
               name: Producto 74
-              description: Fugit aut dolor. Fugit mollitia qui. Aliquam possimus qui.
+              description: Quibusdam quae eius. Est saepe corrupti. Ex iure doloribus.
             - id: 71
               name: Producto 75
-              description: Dignissimos est sit. Esse iure quasi. Aut voluptates minima.
+              description: Ipsam est et. Eligendi at illum. Amet dicta numquam.
             - id: 72
               name: Producto 76
-              description: Qui commodi impedit. Dolores doloribus debitis. Aut quo
-                veritatis.
+              description: Aut molestiae magni. Minima magnam et. Laborum et nostrum.
         '401':
           description: invalid token
     post:
@@ -421,8 +423,8 @@ paths:
             application/json:
               id: 83
               name: Producto 87
-              description: Consequuntur magni est. Cumque nisi molestias. Eligendi
-                vel reprehenderit.
+              description: Dolor voluptatibus vitae. Aspernatur blanditiis eaque.
+                Qui porro vitae.
         '404':
           description: with valid auth_token and invalid id
           examples:
@@ -534,9 +536,9 @@ paths:
           description: with valid auth_token and limit
           examples:
             application/json:
-              Producto 91: 9
-              Producto 99: 9
-              Producto 92: 8
+              Producto 98: 9
+              Producto 93: 8
+              Producto 96: 8
         '401':
           description: invalid token
   "/api/sessions":
@@ -569,8 +571,8 @@ paths:
           description: with valid user credentials
           examples:
             application/json:
-              auth_token: YZKssfCcJF51jx2WeyGQbXF9
-              expires_at: '2020-07-20T22:25:14.000Z'
+              auth_token: CfqpvTMPq7iVPzFjChiKUw8g
+              expires_at: '2020-07-21T15:10:20.000Z'
         '401':
           description: with invalid user credentials
           examples:
