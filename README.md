@@ -22,7 +22,7 @@ With docker:
 
     
 
-``` bash
+    ``` bash
         git clone git@github.com:HeHuHdez/api_test.git
         cd api_test/
     ```
@@ -31,7 +31,7 @@ With docker:
 
     
 
-``` bash
+    ``` bash
         # with docker
         docker-compose up -d
         docker exec -it api_test_web_1 bash
@@ -53,7 +53,7 @@ With docker:
 
     
 
-``` bash
+    ``` bash
         bundle exec rspec -f d
 
         # This will print out the test message.
