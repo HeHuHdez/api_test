@@ -8,15 +8,15 @@ This projects was built on:
 
 It uses a docker-compose file to build two containers one for a MySql database and one for the rails environment. If you wish to do the setup in your local machine these are the versions used for all the other programs
 
-  + Ruby on Rails 5.2
-  + Ruby 2.5.5
-  + MySQL 5.7
+* Ruby on Rails 5.2
+* Ruby 2.5.5
+* MySQL 5.7
 
 ## Setup
 
 With docker: 
 
-1. Open a new terminal, clone this project and open the directory
+ 1. Open a new terminal, clone this project and open the directory
 
     
 
