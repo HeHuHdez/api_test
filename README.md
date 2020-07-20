@@ -74,11 +74,11 @@ In a local environment:
 
 Once you have the site up and running you can visit the site and by default you should be redirected to the swagger page
 
-![](public\swagger_home.png)
+![](public/swagger_home.png)
 
 If you've never used swagger before it's really easy, just click on a URL to expand it. You can read some examples on how the app responds depending on the params. Or you can try it on your own. 
 
-![](public\swagger_example.png)
+![](public/swagger_example.png)
 
 ## App structure
 
