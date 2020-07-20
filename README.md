@@ -104,4 +104,4 @@ The default user email is `apitest@test.com` and the password is `apitest123` . 
 
 ## Heroku
 
-You can visit the site live with the following url https://apitest-hhernandez.herokuapp.com/ it's on the free tier for heroku, so only 10 active connections simultaneity are possible. In there you can find the swagger documentation. 
+You can visit the site live with the following url `https://apitest-hhernandez.herokuapp.com/` it's on the free tier for heroku, so only 10 active connections simultaneity are possible. In there you can find the swagger documentation. 
