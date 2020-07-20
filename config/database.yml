@@ -19,4 +19,3 @@ production:
   database: <%= ENV['APP_DATABASE'] %>
   username: <%= ENV['APP_DATABASE_USERNAME'] %>
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
-  host: <%= ENV['CLEARDB_DATABASE_URL'] %>
