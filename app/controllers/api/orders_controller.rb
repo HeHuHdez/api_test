@@ -22,7 +22,9 @@ module Api
       @order = Order.new(order_params.except(:products))
       @order.order_products.build(order_params[:products])
       if @order.save
-        json_response(@order, :created, api_order_url(@order), { products_with_quantity: { only: %i[product_id quantity] } })
+        json_response(@order, :created, api_order_url(@order), {
+                        products_with_quantity: { only: %i[product_id quantity] }
+                      })
       else
         json_response(@order.errors, :unprocessable_entity)
       end
