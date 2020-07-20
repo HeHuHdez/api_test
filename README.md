@@ -1,5 +1,7 @@
 # Api test
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b37613212fe5429f83bac3f7dc0d186b)](https://app.codacy.com/manual/HeHuHdez/api_test?utm_source=github.com&utm_medium=referral&utm_content=HeHuHdez/api_test&utm_campaign=Badge_Grade_Dashboard)
+
 ## Requirements
 
 This projects was built on: 
