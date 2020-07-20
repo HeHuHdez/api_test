@@ -84,3 +84,6 @@ To see all the model validations I recommend executing all tests in documentatio
 
 The default user email is `apitest@test.com` and the password is `apitest123`. There are 10 products and 10 orders, each going from the id's 1 through 10. And each one is paired with each other (Product 1 with order 1). They have random quantities. 
 
+## Heroku
+
+You can visit the site live with the following url https://apitest-hhernandez.herokuapp.com/ it's on the free tier for heroku, so only 10 active connections simultaneity are possible. In there you can find the swagger documentation. 
